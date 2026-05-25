@@ -912,9 +912,11 @@ export default function HomePage() {
         borderBottom: "1px solid #e2e8f0",
       }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 20px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-          <div className="font-display" style={{ fontSize: "1.1rem", letterSpacing: "0.12em", color: "#0a1628", flexShrink: 0 }}>
-            QAZQORGAN
-          </div>
+         <img
+  src="/logo.png"
+  alt="QazQorgan"
+  style={{ height: 44, width: "auto", display: "block" }}
+/>
           <nav className="nav-desktop" style={{ display: "flex", gap: 36, alignItems: "center" }}>
             {navLinks.map(item => {
               const [href, label] = item.split(":")
@@ -1173,7 +1175,11 @@ export default function HomePage() {
       <footer className="footer-section" style={{ background: "#050d1f", padding: "64px 24px 40px", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="footer-grid" style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 44 }}>
           <div>
-            <div className="font-display" style={{ fontSize: "1.1rem", letterSpacing: "0.12em", color: "#fff", marginBottom: 16 }}>QAZQORGAN</div>
+ <img
+  src="/logo.png"
+  alt="QazQorgan"
+  style={{ height: 44, width: "auto", display: "block" }}
+/>
             <p style={{ fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(255,255,255,0.35)", maxWidth: 260, margin: 0 }}>
               НПЦ ОТ «QazQorgan» — казахстанская разработка и производство БАС, средств противодействия БПЛА и профессиональной радиосвязи BARYS KZTE.
             </p>
