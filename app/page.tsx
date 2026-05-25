@@ -1121,7 +1121,7 @@ export default function HomePage() {
             <div style={{ marginTop: 36, display: "flex", flexDirection: "column", gap: 20 }}>
               {[
                 { label: "Штаб-квартира",   value: "Республика Казахстан, Астана", sub: "Алматинский район, ул. Жирентаева, зд. 18" },
-                { label: "Общие запросы",    value: "info@qazqorgan.kz" },
+                { label: "Общие запросы",    value: "info.qazqorgan@gmail.com" },
                 { label: "Юридическое лицо", value: "НПЦ ОТ «QazQorgan»" },
                 { label: "Время работы",     value: "Пн — Пт · 09:00 — 18:00 (UTC+5)" },
               ].map(c => (
@@ -1129,7 +1129,7 @@ export default function HomePage() {
                   <p style={{ fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 4, marginTop: 0 }}>{c.label}</p>
                   <p style={{ fontSize: "1rem", fontWeight: 600, color: "#0a1628", margin: 0 }}>
                     {c.label === "Общие запросы"
-                      ? <a href="mailto:info@qazqorgan.kz" style={{ color: "#1d4ed8", textDecoration: "none" }}>info@qazqorgan.kz</a>
+                      ? <a href="mailto:info.qazqorgan@gmail.com" style={{ color: "#1d4ed8", textDecoration: "none" }}>info.qazqorgan@gmail.com</a>
                       : c.value}
                   </p>
                   {c.sub && <p style={{ fontSize: "0.82rem", color: "#64748b", margin: "2px 0 0" }}>{c.sub}</p>}
@@ -1164,7 +1164,7 @@ export default function HomePage() {
                 <a href="#privacy" style={{ color: "#1d4ed8" }} onClick={(e) => { e.preventDefault(); setLegal("privacy") }}>Политикой конфиденциальности</a>.
               </p>
               <div className={`form-ok${formOk ? " show" : ""}`}>
-                Спасибо — ваш запрос получен. Мы ответим с адреса <strong>info@qazqorgan.kz</strong> в течение одного рабочего дня.
+                Спасибо — ваш запрос получен. Мы ответим с адреса <strong>info.qazqorgan@gmail.com</strong> в течение одного рабочего дня.
               </div>
             </form>
           </div>
@@ -1202,7 +1202,7 @@ export default function HomePage() {
           <div>
             <h4 style={{ fontSize: "0.67rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 18, marginTop: 0 }}>Контакты</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <a href="mailto:info@qazqorgan.kz" className="footer-link">info@qazqorgan.kz</a>
+              <a href="mailto:info.qazqorgan@gmail.com" className="footer-link">info.qazqorgan@gmail.com</a>
               <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.9rem", margin: 0 }}>Алматинский район, ул. Жирентаева, зд. 18</p>
               <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.9rem", margin: 0 }}>Астана, Казахстан</p>
             </div>
@@ -1234,13 +1234,13 @@ export default function HomePage() {
           <h3>4. Сроки хранения</h3>
           <p>Данные хранятся в течение срока, необходимого для ответа и документирования, после чего удаляются или обезличиваются.</p>
           <h3>5. Ваши права</h3>
-          <p>Вы вправе запросить доступ, исправление или удаление ваших данных: <a href="mailto:info@qazqorgan.kz">info@qazqorgan.kz</a></p>
+          <p>Вы вправе запросить доступ, исправление или удаление ваших данных: <a href="mailto:info.qazqorgan@gmail.com">info.qazqorgan@gmail.com</a></p>
           <h3>6. Безопасность</h3>
           <p>Мы применяем технические и организационные меры для защиты данных от несанкционированного доступа.</p>
           <h3>7. Применимое право</h3>
           <p>Политика регулируется законодательством Республики Казахстан, в том числе Законом «О персональных данных и их защите».</p>
           <h3>8. Контакты</h3>
-          <p>НПЦ ОТ «QazQorgan», Алматинский район, ул. Жирентаева, зд. 18, г. Астана, РК. Email: <a href="mailto:info@qazqorgan.kz">info@qazqorgan.kz</a></p>
+          <p>НПЦ ОТ «QazQorgan», Алматинский район, ул. Жирентаева, зд. 18, г. Астана, РК. Email: <a href="mailto:info.qazqorgan@gmail.com">info.qazqorgan@gmail.com</a></p>
         </div>
       </div>
 
@@ -1266,7 +1266,7 @@ export default function HomePage() {
           <h3>7. Применимое право</h3>
           <p>Условия регулируются законодательством Республики Казахстан. Споры рассматриваются в компетентных судах РК.</p>
           <h3>8. Контакты</h3>
-          <p>По вопросам, связанным с настоящими Условиями: <a href="mailto:info@qazqorgan.kz">info@qazqorgan.kz</a></p>
+          <p>По вопросам, связанным с настоящими Условиями: <a href="mailto:info.qazqorgan@gmail.com">info.qazqorgan@gmail.com</a></p>
         </div>
       </div>
     </main>
