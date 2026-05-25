@@ -922,7 +922,7 @@ export default function HomePage() {
             })}
           </nav>
           <button className="btn-nav" onClick={() => document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" })}>
-            Запросить брифинг
+               Оставить заявку
           </button>
           <button
             className="nav-mobile-btn"
@@ -969,7 +969,14 @@ export default function HomePage() {
         className="hero-section"
         style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden", padding: "120px 24px 80px" }}
       >
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundImage: "url(https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2400&auto=format&fit=crop)", backgroundSize: "cover", backgroundPosition: "center 30%" }} />
+<div
+  style={{
+    position: "absolute",
+    inset: 0,
+    background:
+      "radial-gradient(circle at top, rgba(37,99,235,0.18), transparent 35%), linear-gradient(180deg, rgba(3,7,18,0.82) 0%, rgba(3,7,18,0.94) 100%)",
+  }}
+/>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(120deg, rgba(6,14,35,0.92) 0%, rgba(10,22,60,0.82) 50%, rgba(15,35,90,0.65) 100%)" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, opacity: 0.04, backgroundImage: "linear-gradient(to right,#fff 1px,transparent 1px),linear-gradient(to bottom,#fff 1px,transparent 1px)", backgroundSize: "80px 80px" }} />
         <div style={{ position: "absolute", top: -80, right: 80, width: 560, height: 560, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 68%)", pointerEvents: "none" }} />
