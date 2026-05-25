@@ -9,7 +9,7 @@ interface Product {
   badgeClass: string
   title: string
   sub: string
-specs: string[][]
+  specs: string[][]
   code: string
   image?: string
 }
@@ -55,7 +55,6 @@ const STYLES = `
     font-size: 0.8125rem;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
-
     cursor: pointer;
     transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
   }
@@ -188,6 +187,7 @@ const STYLES = `
     padding: 4px 12px;
     border-radius: 50px;
     margin-bottom: 16px;
+    align-self: flex-start;
   }
   .spec-badge-blue   { background: #eff6ff; color: #1d4ed8; }
   .spec-badge-green  { background: #f0fdf4; color: #16a34a; }
@@ -221,7 +221,7 @@ const STYLES = `
     font-size: 0.82rem;
     gap: 12px;
   }
-  .spec-key { color: #64748b; }
+  .spec-key { color: #64748b; flex-shrink: 0; }
   .spec-val { color: #0a1628; font-weight: 600; text-align: right; }
 
   .spec-footer {
@@ -239,6 +239,7 @@ const STYLES = `
     width: 7px; height: 7px; border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 6px #22c55e;
+    flex-shrink: 0;
   }
 
   .legal-overlay {
@@ -292,14 +293,221 @@ const STYLES = `
   }
   .form-ok.show { display: block; }
 
+  /* ─── МОБИЛЬНАЯ АДАПТИВНОСТЬ ─── */
+
+  /* Навигация */
+  .nav-desktop { display: flex; }
+  .nav-mobile-btn { display: none; }
+
+  /* Хиро: кнопки */
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* Статистика хиро */
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  /* Сетка продуктов */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  /* About секция */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 72px;
+    align-items: center;
+  }
+
+  /* Contacts секция */
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 72px;
+    align-items: start;
+  }
+
+  /* Форма — сетка имя/email */
+  .form-name-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* Footer */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 44px;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Tabs — горизонтальный скролл на мобиле */
+  .cat-tabs-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-bottom: 0;
+    padding-bottom: 2px;
+  }
+  .cat-tabs-wrapper::-webkit-scrollbar { display: none; }
+  .cat-tabs-wrapper .cat-tabs {
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+    width: max-content;
+    min-width: 100%;
+  }
+
   @media (max-width: 768px) {
+    /* Навигация */
     .nav-desktop { display: none !important; }
     .nav-mobile-btn { display: flex !important; }
-    .legal-box { padding: 32px 22px; }
+    .btn-nav { display: none !important; }
+
+    /* Мобильное меню */
+    .mobile-menu {
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
+      padding: 20px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .mobile-menu-cta {
+      display: block !important;
+    }
+
+    /* Хиро */
+    .hero-section {
+      min-height: 100svh;
+      padding-top: 100px !important;
+      padding-bottom: 60px !important;
+    }
+    .hero-buttons {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-outline {
+      width: 100%;
+      justify-content: center;
+    }
+    .hero-stats {
+      gap: 28px 40px;
+    }
+    .hero-stats > div {
+      min-width: calc(50% - 20px);
+    }
+
+    /* About */
+    .about-section {
+      padding: 64px 20px !important;
+    }
+    .about-grid {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+
+    /* Products */
+    .products-section {
+      padding: 64px 20px !important;
+    }
+    .products-header {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 20px !important;
+      margin-bottom: 28px !important;
+    }
+    .products-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .cat-tabs {
+      margin-bottom: 28px !important;
+    }
+
+    /* Contacts */
+    .contacts-section {
+      padding: 64px 20px !important;
+    }
+    .contacts-grid {
+      grid-template-columns: 1fr !important;
+      gap: 44px !important;
+    }
+
+    /* Form */
+    .form-name-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .contact-form-box {
+      padding: 28px 20px !important;
+      border-radius: 20px !important;
+    }
+
+    /* Footer */
+    .footer-section {
+      padding: 48px 20px 32px !important;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 32px !important;
+    }
+    .footer-bottom {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      gap: 10px !important;
+    }
+    .footer-bottom-links {
+      order: -1;
+    }
+
+    /* Legal modal */
+    .legal-overlay {
+      padding: 20px 12px;
+    }
+    .legal-box {
+      padding: 28px 18px !important;
+      border-radius: 18px !important;
+    }
+    .legal-box h2 {
+      font-size: 1.4rem !important;
+      padding-right: 40px;
+    }
+
+    /* Spec card */
+    .spec-card {
+      padding: 20px !important;
+    }
   }
+
+  @media (max-width: 400px) {
+    .footer-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .hero-stats > div {
+      min-width: 100%;
+    }
+  }
+
   @media (min-width: 769px) {
     .nav-mobile-btn { display: none !important; }
     .mobile-menu { display: none !important; }
+    .mobile-menu-cta { display: none !important; }
   }
 `
 
@@ -346,7 +554,6 @@ const UAS_PRODUCTS = [
     badge: "МЕДЭВАК / Логистика", badgeClass: "spec-badge-blue",
     title: "TULPAR",
     image: "/products/tulpar.png",
-
     sub: "БАС для эвакуации раненых из труднодоступных и боевых зон",
     specs: [
       ["Макс. взлётная масса", "165 кг"],
@@ -366,7 +573,6 @@ const UAS_PRODUCTS = [
     badge: "Квадрокоптер ISR", badgeClass: "spec-badge-blue",
     title: "EVO MAX 4T",
     image: "/products/evo_max.png",
-
     sub: "Профессиональный квадрокоптер с тепловизором для разведки",
     specs: [
       ["Широкоугол. камера", "50 МП"],
@@ -384,7 +590,6 @@ const UAS_PRODUCTS = [
     badge: "FPV / Рой", badgeClass: "spec-badge-blue",
     title: "FPV-дроны и рои",
     image: "/products/fpv.png",
-
     sub: "Барражирующие FPV-системы для разведки и ударных задач",
     specs: [
       ["Дальность", "до 10 км"],
@@ -396,7 +601,6 @@ const UAS_PRODUCTS = [
     ],
     code: "QQ-УАС-05",
   },
- 
 ]
 
 const DET_PRODUCTS = [
@@ -404,7 +608,6 @@ const DET_PRODUCTS = [
     badge: "Стационарный", badgeClass: "spec-badge-green",
     title: "STP120",
     image: "/products/stp120.png",
-
     sub: "Стационарный комплекс РЧ-обнаружения и мониторинга БПЛА",
     specs: [
       ["Дальность обнаружения", "3 км"],
@@ -422,7 +625,6 @@ const DET_PRODUCTS = [
     badge: "Возимый", badgeClass: "spec-badge-green",
     title: "STP121",
     image: "/products/stp121.png",
-
     sub: "Мобильный комплекс обнаружения БПЛА на базе автомобиля",
     specs: [
       ["Дальность обнаружения", "3 км"],
@@ -440,7 +642,6 @@ const DET_PRODUCTS = [
     badge: "Быстрое развёртывание", badgeClass: "spec-badge-green",
     title: "STP122",
     image: "/products/stp122.png",
-
     sub: "Комплекс обнаружения с магнитным креплением для быстрого монтажа",
     specs: [
       ["Дальность обнаружения", "3 км"],
@@ -461,7 +662,6 @@ const CM_PRODUCTS = [
     badge: "Носимый подавитель", badgeClass: "spec-badge-red",
     title: "Blader SPS110",
     image: "/products/sps110.png",
-
     sub: "Носимый комплекс противодействия коммерческим БПЛА и FPV-дронам",
     specs: [
       ["Макс. мощность", "100 Вт"],
@@ -479,7 +679,6 @@ const CM_PRODUCTS = [
     badge: "Стационарный 360°", badgeClass: "spec-badge-red",
     title: "CM12",
     image: "/products/cm12.png",
-
     sub: "Стационарный комплекс обнаружения и подавления БПЛА",
     specs: [
       ["Диапазонов подавления", "12"],
@@ -495,7 +694,6 @@ const CM_PRODUCTS = [
     badge: "Возимый", badgeClass: "spec-badge-red",
     title: "Hunter V (SVH100)",
     image: "/products/hunterv.png",
-
     sub: "Мобильный подавитель БПЛА для защиты транспортных колонн и VIP",
     specs: [
       ["Радиус защиты", "> 300 м"],
@@ -514,7 +712,6 @@ const CM_PRODUCTS = [
     badge: "Комнатный", badgeClass: "spec-badge-red",
     title: "ZLL-10CNET",
     image: "/products/zll.png",
-
     sub: "Комнатный подавитель беспроводного сигнала для защищённых помещений",
     specs: [
       ["Стандарты", "2G / 3G / 4G / 5G / Wi-Fi / BT"],
@@ -532,7 +729,6 @@ const RAD_PRODUCTS = [
     badge: "Базовая станция", badgeClass: "spec-badge-purple",
     title: "Barys KZTE-9500 BTX",
     image: "/products/kzte9500.png",
-
     sub: "Базовая станция транкинговой связи высокой ёмкости",
     specs: [
       ["Макс. пользователей", "30 000"],
@@ -549,7 +745,6 @@ const RAD_PRODUCTS = [
     badge: "Стационарная", badgeClass: "spec-badge-purple",
     title: "Barys KZTE-R5",
     image: "/products/kzte-r5.png",
-
     sub: "Стационарная транкинговая радиостанция DMR",
     specs: [
       ["Диапазон частот", "ОВЧ 136–174 / УВЧ 350–520 МГц"],
@@ -568,7 +763,6 @@ const RAD_PRODUCTS = [
     badge: "Возимая", badgeClass: "spec-badge-purple",
     title: "Barys KZTE-C5",
     image: "/products/kzte-c5.png",
-
     sub: "Возимая мобильная радиостанция DMR для транспортных средств",
     specs: [
       ["Диапазон частот", "ОВЧ 136–174 / УВЧ 350–520 МГц"],
@@ -586,7 +780,6 @@ const RAD_PRODUCTS = [
     badge: "Портативная DMR", badgeClass: "spec-badge-purple",
     title: "Barys KZTE-M3",
     image: "/products/kzte-m3.png",
-
     sub: "Двухдиапазонная портативная рация DMR с функцией ретранслятора",
     specs: [
       ["Диапазон частот", "УВЧ 400–480 / ОВЧ 136–174 МГц"],
@@ -604,7 +797,6 @@ const RAD_PRODUCTS = [
     badge: "Портативная LTE", badgeClass: "spec-badge-purple",
     title: "Barys KZTE-M4 LTE",
     image: "/products/kzte-m.png",
-
     sub: "Рация DMR + LTE (PoC) для частных и публичных сетей",
     specs: [
       ["Тип сети", "GSM/WCDMA/TDD-LTE/FDD-LTE"],
@@ -621,7 +813,6 @@ const RAD_PRODUCTS = [
     badge: "Tier 3 · IP68", badgeClass: "spec-badge-purple",
     title: "Barys KZTE-M5 Tier3",
     image: "/products/kzte-m.png",
-
     sub: "Транкинговая рация DMR Tier III с защитой IP68",
     specs: [
       ["Диапазон частот", "ОВЧ 136–174 / УВЧ 350–520 МГц"],
@@ -651,29 +842,29 @@ function SpecCard({ p }: { p: Product }) {
       <span className={`spec-badge ${p.badgeClass}`}>{p.badge}</span>
 
       <div style={{
-  aspectRatio: "16/9",
-  borderRadius: 14,
-  overflow: "hidden",
-  marginBottom: 20,
-  border: "1px solid #dbeafe",
-}}>
-  <img
-    src={p.image}
-    alt={p.title}
-    style={{
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      display: "block",
-    }}
-  />
-</div>
+        aspectRatio: "16/9",
+        borderRadius: 14,
+        overflow: "hidden",
+        marginBottom: 20,
+        border: "1px solid #dbeafe",
+      }}>
+        <img
+          src={p.image}
+          alt={p.title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
 
       <h4 className="spec-title">{p.title}</h4>
       <p className="spec-sub">{p.sub}</p>
 
       <ul className="spec-list">
-      {p.specs.map(([k, v]) => (
+        {p.specs.map(([k, v]) => (
           <li key={k} className="spec-row">
             <span className="spec-key">{k}</span>
             <span className="spec-val">{v}</span>
@@ -720,8 +911,8 @@ export default function HomePage() {
         WebkitBackdropFilter: "blur(20px)",
         borderBottom: "1px solid #e2e8f0",
       }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 72, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div className="font-display" style={{ fontSize: "1.2rem", letterSpacing: "0.12em", color: "#0a1628", flexShrink: 0 }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 20px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+          <div className="font-display" style={{ fontSize: "1.1rem", letterSpacing: "0.12em", color: "#0a1628", flexShrink: 0 }}>
             QAZQORGAN
           </div>
           <nav className="nav-desktop" style={{ display: "flex", gap: 36, alignItems: "center" }}>
@@ -737,43 +928,65 @@ export default function HomePage() {
             className="nav-mobile-btn"
             aria-label="Открыть меню"
             onClick={() => setMobileOpen(o => !o)}
-            style={{ background: "none", border: "none", cursor: "pointer", color: "#0a1628", padding: 4 }}
+            style={{ background: "none", border: "none", cursor: "pointer", color: "#0a1628", padding: 4, display: "none" }}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
         {mobileOpen && (
-          <div className="mobile-menu" style={{ background: "#fff", borderTop: "1px solid #e2e8f0", padding: "20px 24px 28px", display: "flex", flexDirection: "column", gap: 20 }}>
+          <div className="mobile-menu" style={{ display: "none" }}>
             {navLinks.map(item => {
               const [href, label] = item.split(":")
-              return <a key={href} href={href} className="nav-link" onClick={() => setMobileOpen(false)} style={{ fontSize: "1rem" }}>{label}</a>
+              return (
+                <a
+                  key={href}
+                  href={href}
+                  className="nav-link"
+                  onClick={() => setMobileOpen(false)}
+                  style={{ fontSize: "1rem" }}
+                >
+                  {label}
+                </a>
+              )
             })}
+            <button
+              className="btn-primary mobile-menu-cta"
+              style={{ width: "100%", justifyContent: "center", marginTop: 4, display: "none" }}
+              onClick={() => {
+                setMobileOpen(false)
+                document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" })
+              }}
+            >
+              Запросить брифинг <ArrowRight size={16} />
+            </button>
           </div>
         )}
       </header>
 
       {/* HERO */}
-      <section style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
+      <section
+        className="hero-section"
+        style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden", padding: "120px 24px 80px" }}
+      >
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundImage: "url(https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2400&auto=format&fit=crop)", backgroundSize: "cover", backgroundPosition: "center 30%" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(120deg, rgba(6,14,35,0.92) 0%, rgba(10,22,60,0.82) 50%, rgba(15,35,90,0.65) 100%)" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, opacity: 0.04, backgroundImage: "linear-gradient(to right,#fff 1px,transparent 1px),linear-gradient(to bottom,#fff 1px,transparent 1px)", backgroundSize: "80px 80px" }} />
         <div style={{ position: "absolute", top: -80, right: 80, width: 560, height: 560, borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 68%)", pointerEvents: "none" }} />
 
-        <div style={{ position: "relative", zIndex: 10, maxWidth: 1280, margin: "0 auto", padding: "120px 24px 80px", width: "100%" }}>
+        <div style={{ position: "relative", zIndex: 10, maxWidth: 1280, margin: "0 auto", width: "100%" }}>
           <div style={{ maxWidth: 720 }}>
-            
-
-            <h1 className="font-display" style={{fontSize: "clamp(2.4rem, 5vw, 4.8rem)", lineHeight: 1.08,letterSpacing: "-0.01em", color: "#fff", margin: 0 }}>
+            <h1 className="font-display" style={{ fontSize: "clamp(2rem, 5vw, 4.8rem)", lineHeight: 1.08, letterSpacing: "-0.01em", color: "#fff", margin: 0 }}>
               БЕСПИЛОТНЫЕ<br />
               СИСТЕМЫ<br />
               <span style={{ color: "#60a5fa" }}>И ЗАЩИТА</span>
             </h1>
 
-            <p style={{ marginTop: 36, maxWidth: 520, fontSize: "1.1rem", lineHeight: 1.85, color: "rgba(255,255,255,0.68)" }}>
+            <p style={{ marginTop: 28, maxWidth: 520, fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)", lineHeight: 1.85, color: "rgba(255,255,255,0.68)" }}>
               НПЦ ОТ «QazQorgan» — разработчик и производитель беспилотных авиационных систем двойного назначения, комплексов обнаружения и подавления БПЛА, а также профессиональной тактической радиосвязи серии BARYS KZTE.
             </p>
 
-            <div style={{ marginTop: 48, display: "flex", flexWrap: "wrap", gap: 14 }}>
+            <div className="hero-buttons" style={{ marginTop: 40, display: "flex", flexWrap: "wrap", gap: 14 }}>
               <button className="btn-primary" onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}>
                 Наша продукция <ArrowRight size={17} />
               </button>
@@ -783,8 +996,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Статистика о компании из PDF */}
-          <div style={{ marginTop: 60, paddingTop: 40, borderTop: "1px solid rgba(255,255,255,0.1)", display: "flex", gap: 48, flexWrap: "wrap" }}>
+          <div className="hero-stats" style={{ marginTop: 56, paddingTop: 36, borderTop: "1px solid rgba(255,255,255,0.1)", display: "flex", gap: 48, flexWrap: "wrap" }}>
             {[
               { value: "19",   label: "Продуктов в каталоге" },
               { value: "4",    label: "Продуктовых семейства" },
@@ -792,7 +1004,7 @@ export default function HomePage() {
               { value: "100%", label: "Отечественное производство" },
             ].map(s => (
               <div key={s.label}>
-                <div className="font-display" style={{ fontSize: "2rem", color: "#fff", lineHeight: 1 }}>{s.value}</div>
+                <div className="font-display" style={{ fontSize: "clamp(1.6rem, 4vw, 2rem)", color: "#fff", lineHeight: 1 }}>{s.value}</div>
                 <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: 6 }}>{s.label}</div>
               </div>
             ))}
@@ -801,11 +1013,11 @@ export default function HomePage() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" style={{ background: "#fff", padding: "100px 24px", borderBottom: "1px solid #e2e8f0" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 72, alignItems: "center" }}>
+      <section id="about" className="about-section" style={{ background: "#fff", padding: "100px 24px", borderBottom: "1px solid #e2e8f0" }}>
+        <div className="about-grid" style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 72, alignItems: "center" }}>
           <div>
             <p style={{ fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#2563eb", fontWeight: 700, marginBottom: 20, marginTop: 0 }}>О компании</p>
-            <h2 className="font-display" style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", lineHeight: 1.12, color: "#0a1628", margin: "0 0 36px" }}>
+            <h2 className="font-display" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.75rem)", lineHeight: 1.12, color: "#0a1628", margin: "0 0 36px" }}>
               Казахстанский разработчик и производитель полного цикла
             </h2>
             <div style={{ fontSize: "1.05rem", lineHeight: 1.9, color: "#475569" }}>
@@ -843,12 +1055,12 @@ export default function HomePage() {
       </section>
 
       {/* PRODUCTS */}
-      <section id="products" style={{ background: "#f8faff", padding: "100px 24px" }}>
+      <section id="products" className="products-section" style={{ background: "#f8faff", padding: "100px 24px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 28, marginBottom: 40 }}>
+          <div className="products-header" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 28, marginBottom: 40 }}>
             <div>
               <p style={{ fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#2563eb", fontWeight: 700, marginBottom: 14, marginTop: 0 }}>Продукция</p>
-              <h2 className="font-display" style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "#0a1628", lineHeight: 1.12, margin: 0 }}>
+              <h2 className="font-display" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.75rem)", color: "#0a1628", lineHeight: 1.12, margin: 0 }}>
                 Четыре продуктовых семейства.<br />Единое боевое пространство.
               </h2>
             </div>
@@ -857,16 +1069,29 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="cat-tabs" role="tablist">
-            {TABS.map(t => (
-              <button key={t.id} className={`cat-tab${activeTab === t.id ? " active" : ""}`} role="tab" aria-selected={activeTab === t.id} onClick={() => setActiveTab(t.id)}>
-                {t.label}
-              </button>
-            ))}
+          {/* Tabs — горизонтальный скролл на мобиле */}
+          <div className="cat-tabs-wrapper" style={{ marginBottom: 28 }}>
+            <div className="cat-tabs" role="tablist">
+              {TABS.map(t => (
+                <button
+                  key={t.id}
+                  className={`cat-tab${activeTab === t.id ? " active" : ""}`}
+                  role="tab"
+                  aria-selected={activeTab === t.id}
+                  onClick={() => setActiveTab(t.id)}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {TABS.map(t => (
-            <div key={t.id} style={{ display: activeTab === t.id ? "grid" : "none", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+            <div
+              key={t.id}
+              className="products-grid"
+              style={{ display: activeTab === t.id ? "grid" : "none", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}
+            >
               {t.data.map(p => <SpecCard key={p.code} p={p} />)}
             </div>
           ))}
@@ -874,11 +1099,11 @@ export default function HomePage() {
       </section>
 
       {/* CONTACTS */}
-      <section id="contacts" style={{ background: "#eff6ff", padding: "100px 24px", borderTop: "1px solid #dbeafe" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 72, alignItems: "start" }}>
+      <section id="contacts" className="contacts-section" style={{ background: "#eff6ff", padding: "100px 24px", borderTop: "1px solid #dbeafe" }}>
+        <div className="contacts-grid" style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 72, alignItems: "start" }}>
           <div>
             <p style={{ fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#2563eb", fontWeight: 700, marginBottom: 20, marginTop: 0 }}>Контакты</p>
-            <h2 className="font-display" style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "#0a1628", lineHeight: 1.12, margin: "0 0 24px" }}>
+            <h2 className="font-display" style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.75rem)", color: "#0a1628", lineHeight: 1.12, margin: "0 0 24px" }}>
               Запросите брифинг<br />или характеристики
             </h2>
             <p style={{ maxWidth: 400, fontSize: "1.05rem", lineHeight: 1.85, color: "#475569", marginTop: 0 }}>
@@ -894,7 +1119,9 @@ export default function HomePage() {
                 <div key={c.label}>
                   <p style={{ fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#94a3b8", marginBottom: 4, marginTop: 0 }}>{c.label}</p>
                   <p style={{ fontSize: "1rem", fontWeight: 600, color: "#0a1628", margin: 0 }}>
-                    {c.label === "Общие запросы" ? <a href="mailto:info@qazqorgan.kz" style={{ color: "#1d4ed8", textDecoration: "none" }}>info@qazqorgan.kz</a> : c.value}
+                    {c.label === "Общие запросы"
+                      ? <a href="mailto:info@qazqorgan.kz" style={{ color: "#1d4ed8", textDecoration: "none" }}>info@qazqorgan.kz</a>
+                      : c.value}
                   </p>
                   {c.sub && <p style={{ fontSize: "0.82rem", color: "#64748b", margin: "2px 0 0" }}>{c.sub}</p>}
                 </div>
@@ -902,10 +1129,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div style={{ background: "#fff", borderRadius: 28, border: "1.5px solid #dbeafe", padding: "44px 36px", boxShadow: "0 20px 60px rgba(29,78,216,0.07)" }}>
+          <div className="contact-form-box" style={{ background: "#fff", borderRadius: 28, border: "1.5px solid #dbeafe", padding: "44px 36px", boxShadow: "0 20px 60px rgba(29,78,216,0.07)" }}>
             <h3 className="font-display" style={{ fontSize: "1.65rem", color: "#0a1628", margin: "0 0 32px" }}>Отправить запрос</h3>
             <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+              <div className="form-name-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                 <input name="name" placeholder="ФИО" className="contact-input" required minLength={2} />
                 <input name="email" placeholder="E-mail" type="email" className="contact-input" required />
               </div>
@@ -936,8 +1163,8 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ background: "#050d1f", padding: "64px 24px 40px", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 44 }}>
+      <footer className="footer-section" style={{ background: "#050d1f", padding: "64px 24px 40px", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="footer-grid" style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 44 }}>
           <div>
             <div className="font-display" style={{ fontSize: "1.1rem", letterSpacing: "0.12em", color: "#fff", marginBottom: 16 }}>QAZQORGAN</div>
             <p style={{ fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(255,255,255,0.35)", maxWidth: 260, margin: 0 }}>
@@ -968,9 +1195,9 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div style={{ maxWidth: 1280, margin: "44px auto 0", paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.07)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+        <div className="footer-bottom" style={{ maxWidth: 1280, margin: "44px auto 0", paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.07)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.25)", margin: 0 }}>© 2025 QazQorgan. Все права защищены.</p>
-          <div style={{ display: "flex", gap: 20 }}>
+          <div className="footer-bottom-links" style={{ display: "flex", gap: 20 }}>
             <a href="#privacy" style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.25)", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); setLegal("privacy") }}>Политика конфиденциальности</a>
             <a href="#terms"   style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.25)", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); setLegal("terms") }}>Условия использования</a>
           </div>
